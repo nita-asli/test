@@ -1,0 +1,36 @@
+<!-- templates/home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Home</title>
+</head>
+<body>
+    <div class="header">
+        <h1>My Quiz App</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                {% if 'username' not in session %}
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    <li><a href="{{ url_for('quiz') }}">Quiz</a></li>
+                    <li><a href="{{ url_for('leaderboard') }}">Leaderboard</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    <div class="content">
+        <h2>Welcome to My Quiz App</h2>
+        <p>Explore the world of quizzes and test your knowledge!</p>
+    </div>
+    <div class="footer">
+        <p>Developed by Nita</p>
+    </div>
+</body>
+</html>
+

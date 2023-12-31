@@ -1,0 +1,53 @@
+<!-- templates/home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Home</title>
+</head>
+<body>
+    <div class="header">
+        <h1>My Quiz App</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('register') }}">Register</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="content">
+        <h2>Home</h2>
+        <form method="post" action="{{ url_for('home') }}">
+            <label for="city">Enter City:</label>
+            <input type="text" id="city" name="city" required>
+            <button type="submit">Get Weather</button>
+        </form>
+        {% if weather_data %}
+            <h3>Weather Forecast for {{ city }}</h3>
+            <table>
+                <tr>
+                    <th>Day</th>
+                    <th>Date</th>
+                    <th>Day Temperature</th>
+                    <th>Night Temperature</th>
+                </tr>
+                {% for day in weather_data %}
+                    <tr>
+                        <td>{{ day.day }}</td>
+                        <td>{{ day.date }}</td>
+                        <td>{{ day.day_temp }}°C</td>
+                        <td>{{ day.night_temp }}°C</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </div>
+    <div class="footer">
+        <p>Developed by Nita</p>
+    </div>
+</body>
+</html>
+

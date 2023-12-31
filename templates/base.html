@@ -1,0 +1,32 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>{% block title %}My Quiz App{% endblock %}</title>
+</head>
+<body>
+    <div class="header">
+        <h1>My Quiz App</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                {% if session.loggedin %}
+                  <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                  <li><a href="{{ url_for('quiz') }}">Quiz</a></li>
+                {% else %}
+                  <li><a href="{{ url_for('login') }}">Login</a></li>
+                  <li><a href="{{ url_for('register') }}">Register</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    {% block content %}{% endblock %}
+    <div class="footer">
+        <p>Developed by Your Name</p>
+    </div>
+</body>
+</html>
+
